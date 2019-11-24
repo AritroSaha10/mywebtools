@@ -29,8 +29,7 @@ def histogram_plot():
     if(json['data'] == []):
         abort(400)
     plot_b64 = str(hist_graph(json['data']))[2:-1]
-    print(plot_b64)
     return render_template('histogram_graph.html', plot_url=plot_b64)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(threaded=True, debug=False, port=80)

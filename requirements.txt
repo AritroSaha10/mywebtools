@@ -1,0 +1,6 @@
+flask
+matplotlib
+pillow
+seaborn
+numpy
+gunicorn
