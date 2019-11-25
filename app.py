@@ -4,9 +4,14 @@ from hist_graph import hist_graph
 
 app = Flask(__name__)
 
+commands = [
+    ("/histogram/plot","Histogram Plotter. Use POST command to send data in json."),
+    ("/histogram/bins","Histogram Bins. Organizes data into bins for histogram. Use POST command to send data in json.")
+]
+
 @app.route("/")
 def home():
-    return "Hello, world!"
+    return render_template("home.html",list=commands)
 
 @app.route("/histogram/bins", methods=['POST'])
 def histogram_bins():
