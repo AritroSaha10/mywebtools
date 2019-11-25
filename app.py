@@ -11,7 +11,7 @@ commands = [
 
 @app.route("/")
 def home():
-    return render_template("home.html",list=commands)
+    return render_template("home.html",items=commands)
 
 @app.route("/histogram/bins", methods=['POST'])
 def histogram_bins():
