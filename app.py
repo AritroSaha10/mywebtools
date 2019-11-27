@@ -1,6 +1,7 @@
 from flask import Flask, request, abort, render_template
 from hist_bins import hist_bins
 from hist_graph import hist_graph
+from stem_leaf import stem_leaf
 
 app = Flask(__name__)
 
@@ -17,6 +18,14 @@ def page_not_found(e):
 def home():
     return render_template("home.html",items=commands)
 
+@app.route("/stem_leaf", methods=['POST'])
+def stemleaf():
+    if (json == None):
+        abort(400)
+    if('data' not in json):
+        abort(400)
+    if(json['data'] == []):
+        abort(400)
 @app.route("/histogram/bins", methods=['POST'])
 def histogram_bins():
     json = request.json
@@ -26,7 +35,7 @@ def histogram_bins():
         abort(400)
     if(json['data'] == []):
         abort(400)
-    return str(hist_bins(json['data']))
+    return str(stem_leaf(json['data']))
 
 @app.route("/histogram/plot", methods=['POST'])
 def histogram_plot():
