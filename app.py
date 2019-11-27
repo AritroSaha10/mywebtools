@@ -1,7 +1,7 @@
 from flask import Flask, request, abort, render_template
 from hist_bins import hist_bins
 from hist_graph import hist_graph
-from stem_leaf import stem_leaf
+from stem_leaf import stemleaf
 
 app = Flask(__name__)
 
@@ -27,7 +27,7 @@ def stemleaf():
         abort(400)
     if(json['data'] == []):
         abort(400)
-    return str(stem_leaf(json['data']))
+    return str(stemleaf(json['data']))
         
         
 @app.route("/histogram/bins", methods=['POST'])
