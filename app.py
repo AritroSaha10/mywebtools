@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 commands = [
     ("/histogram/plot","Histogram Plotter. Use POST command to send data in json."),
-    ("/histogram/bins","Histogram Bins. Organizes data into bins for histogram. Use POST command to send data in json.")
+    ("/histogram/bins","Histogram Bins. Organizes data into bins for histogram. Use POST command to send data in json."),
+    ("/stem_leaf","Steam Leaf Plot. Organizes data into stem-leaf plot. Use POST command to send data in json.")
 ]
 
 @app.errorhandler(404)
