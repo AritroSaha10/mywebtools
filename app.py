@@ -19,7 +19,7 @@ def home():
     return render_template("home.html",items=commands)
 
 @app.route("/stem_leaf", methods=['POST'])
-def stemleaf():
+def stemleaf_mobile():
     json = request.json
     if (json == None):
         abort(400)
