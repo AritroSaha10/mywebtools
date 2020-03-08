@@ -2,6 +2,7 @@ from flask import Flask, request, abort, render_template
 from hist_bins import hist_bins
 from hist_graph import hist_graph
 from stem_leaf import stemleaf
+from transformations import Point
 
 app = Flask(__name__)
 
@@ -57,6 +58,37 @@ def histogram_plot():
         abort(400)
     plot_b64 = str(hist_graph(json['data']))[2:-1]
     return render_template('histogram_graph.html', plot_url=plot_b64)
+
+@app.route("/transformations", methods=['POST'])
+def transform():
+    json = request.json
+    if (json == None):
+        abort(400)
+
+    # data checking time
+    if (json['x'] == None or json['y'] == None or json['transformations'] == None):
+        abort(400)
+    
+    starting_point = Point(float(json['x']), float(json['y']))
+    for transformation in json['transformations']:
+        if (transformation == None):
+            continue
+
+        # TODO: Fill in the conditions with the actions
+        if (transformation == "translate"):
+            pass
+        elif (transformation == "rotate"):
+            pass
+        elif (transformation == "reflect"):
+            pass
+        elif (transformation == "dilate"):
+            pass
+        else:
+            continue
+
+        
+
+
 
 if __name__ == "__main__":
     app.run(threaded=True, debug=False, port=80)
