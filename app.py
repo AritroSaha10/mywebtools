@@ -72,60 +72,60 @@ def transform():
     point = Point(float(json['x']), float(json['y']))
 
     for transformation in json['transformations']:
-        if (transformation == None):
+        if (json['transformations'][transformation] == None):
             continue
 
-        if (transformation == "translate"):
-            if (transformation['offset_x'] == None or transformation['offset_y'] == None):
+        if (json['transformations'][transformation] == "translate"):
+            if (json['transformations'][transformation]['offset_x'] == None or json['transformations'][transformation]['offset_y'] == None):
                 abort(400)
             
-            offset_x = float(transformation['offset_x'])
-            offset_y = float(transformation['offset_y'])
+            offset_x = float(json['transformations'][transformation]['offset_x'])
+            offset_y = float(json['transformations'][transformation]['offset_y'])
             
             point.translate(offset_x, offset_y)
         
-        elif (transformation == "rotate"):
-            if (transformation['rotation_angle'] == None or transformation['rotation_point'] == None):
+        elif (json['transformations'][transformation] == "rotate"):
+            if (json['transformations'][transformation]['rotation_angle'] == None or json['transformations'][transformation]['rotation_point'] == None):
                 abort(400)
 
-            rotation_angle = float(transformation['rotation_angle'])
+            rotation_angle = float(json['transformations'][transformation]['rotation_angle'])
 
-            if (transformation['rotation_point']['x'] == None or transformation['rotation_point']['y'] == None):
+            if (json['transformations'][transformation]['rotation_point']['x'] == None or json['transformations'][transformation]['rotation_point']['y'] == None):
                 abort(400)
 
             rotation_point = (
-                float(transformation['rotation_point']['x']), 
-                float(transformation['rotation_point']['y'])
+                float(json['transformations'][transformation]['rotation_point']['x']), 
+                float(json['transformations'][transformation]['rotation_point']['y'])
                 )
 
             point.rotate(rotation_angle, rotation_point)
         
-        elif (transformation == "reflect"):
-            if (transformation['reflection_axis'] == None or transformation['reflection_point'] == None):
+        elif (json['transformations'][transformation] == "reflect"):
+            if (json['transformations'][transformation]['reflection_axis'] == None or json['transformations'][transformation]['reflection_point'] == None):
                 abort(400)
 
             reflection_axis = Axis.X_AXIS
 
-            if (transformation['reflection_axis'] == "y"):
+            if (json['transformations'][transformation]['reflection_axis'] == "y"):
                 reflection_axis = Axis.Y_AXIS
-            elif (transformation['reflection_axis'] == "both"):
+            elif (json['transformations'][transformation]['reflection_axis'] == "both"):
                 reflection_axis = Axis.BOTH
 
             reflection_point = (
-                float(transformation['reflection_point']['x']),
-                float(transformation['reflection_point']['y'])
+                float(json['transformations'][transformation]['reflection_point']['x']),
+                float(json['transformations'][transformation]['reflection_point']['y'])
             )
 
             point.reflect(reflection_axis, reflection_point)
 
-        elif (transformation == "dilate"):
-            if (transformation['scale_factor'] or transformation['dilation_point'] == None):
+        elif (json['transformations'][transformation] == "dilate"):
+            if (json['transformations'][transformation]['scale_factor'] or json['transformations'][transformation]['dilation_point'] == None):
                 abort(400)
             
-            scale_factor = float(transformation['scale_factor'])
+            scale_factor = float(json['transformations'][transformation]['scale_factor'])
             dilation_point = (
-                float(transformation['dilation_point']['x']),
-                float(transformation['dilation_point']['y'])
+                float(json['transformations'][transformation]['dilation_point']['x']),
+                float(json['transformations'][transformation]['dilation_point']['y'])
             )
 
             point.dilate(scale_factor, dilation_point)
