@@ -133,7 +133,7 @@ def transform():
             continue
 
 
-        return str({"x": point.x, "y": point.y})
+    return str({"x": point.x, "y": point.y})
 
         
 
