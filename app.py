@@ -83,6 +83,7 @@ def transform():
             offset_y = float(json['transformations'][transformation]['offset_y'])
             
             point.translate(offset_x, offset_y)
+            print(point)
         
         elif (json['transformations'][transformation] == "rotate"):
             if (json['transformations'][transformation]['rotation_angle'] == None or json['transformations'][transformation]['rotation_point'] == None):
@@ -99,6 +100,7 @@ def transform():
                 )
 
             point.rotate(rotation_angle, rotation_point)
+            print(point)
         
         elif (json['transformations'][transformation] == "reflect"):
             if (json['transformations'][transformation]['reflection_axis'] == None or json['transformations'][transformation]['reflection_point'] == None):
@@ -117,6 +119,7 @@ def transform():
             )
 
             point.reflect(reflection_axis, reflection_point)
+            print(point)
 
         elif (json['transformations'][transformation] == "dilate"):
             if (json['transformations'][transformation]['scale_factor'] or json['transformations'][transformation]['dilation_point'] == None):
@@ -129,6 +132,7 @@ def transform():
             )
 
             point.dilate(scale_factor, dilation_point)
+            print(point)
         else:
             continue
 
